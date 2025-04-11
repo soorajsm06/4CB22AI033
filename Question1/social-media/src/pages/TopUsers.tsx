@@ -1,41 +1,20 @@
-import { useEffect, useState } from "react";
-import { fetchUsers } from "../api/users";
-
-const TopUsers = () => {
-  const [users, setUsers] = useState<{ [key: string]: string }>({});
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const userData = await fetchUsers();
-      setUsers(userData);
-    };
-    getUsers();
-  }, []);
-
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Top Users</h1>
-      <ul className="space-y-2">
-        {Object.entries(users).map(([id, name]) => (
-          <li key={id} className="bg-gray-100 p-3 rounded shadow">
-            {name}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default TopUsers;
-
-
-
-
-export default function TopUsers() {
+function TopUsers() {
+    const users = ['Alice', 'Bob', 'Charlie']
+  
     return (
-      <div className="p-4 text-xl">
-        Top Users Page
+      <div>
+        <h2 className="text-2xl font-semibold text-blue-300 mb-6">Top Users</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {users.map(user => (
+            <li key={user} className="bg-gray-800 p-6 rounded-lg shadow hover:bg-gray-700 transition">
+              <h3 className="text-lg font-bold text-white">{user}</h3>
+              <p className="text-gray-400">Top contributor of the week!</p>
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }
+  
+  export default TopUsers
   
